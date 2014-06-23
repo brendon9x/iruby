@@ -28,6 +28,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'activesupport', '~> 3'
   s.add_runtime_dependency 'bond', '~> 0'
   s.add_runtime_dependency 'ffi-rzmq', '~> 2.0'
-  s.add_runtime_dependency 'multi_json', '~> 1.10'
+  s.add_runtime_dependency 'multi_json', '~> 1'
   s.add_runtime_dependency 'mimemagic', '~> 0'
 end
