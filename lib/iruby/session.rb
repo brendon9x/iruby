@@ -1,3 +1,5 @@
+require 'active_support/core_ext/object'
+
 module IRuby
   class Session
     DELIM = '<IDS|MSG>'
@@ -6,7 +8,7 @@ module IRuby
       @username = username
       @session = SecureRandom.uuid
       @msg_id = 0
-      if config['key'] && config['signature_scheme']
+      if config['key'].present? && config['signature_scheme'].present?
         raise 'Unknown signature scheme' unless config['signature_scheme'] =~ /\Ahmac-(.*)\Z/
         @hmac = OpenSSL::HMAC.new(config['key'], OpenSSL::Digest.new($1))
       end
