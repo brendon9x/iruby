@@ -47,9 +47,6 @@ module IRuby
     end
 
     def create_backend
-      PryBackend.new
-    rescue Exception => ex
-      STDERR.puts ex.message unless LoadError === ex
       PlainBackend.new
     end
 
