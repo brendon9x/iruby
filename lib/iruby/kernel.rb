@@ -63,10 +63,18 @@ module IRuby
       end
     end
 
+    def create_display_message(obj, options={})
+      {data: Display.new(obj, options).data, metadata: {}, execution_count: @execution_count}
+    end
+
+    def send_display_message(content)
+      @session.send(@pub_socket, 'pyout', content) unless content.nil?
+    end
+
     def display(obj, options={})
       unless obj.nil?
-        content = { data: Display.new(obj, options).data, metadata: {}, execution_count: @execution_count }
-        @session.send(@pub_socket, 'pyout', content)
+        content = create_display_message obj, options
+        send_display_message content
       end
       nil
     end
