@@ -111,6 +111,7 @@ module IRuby
       @session.send(@pub_socket, 'pyin', code: code)
 
       result = nil
+      display_message = nil
       begin
         result = @backend.eval(code)
         content = {
@@ -120,6 +121,7 @@ module IRuby
           user_expressions: {},
           execution_count: @execution_count
         }
+        display_message = create_display_message(result)
       rescue Exception => e
         content = {
           ename: e.class.to_s,
@@ -132,7 +134,7 @@ module IRuby
         @session.send(@pub_socket, 'pyerr', content)
       end
       @session.send(@reply_socket, 'execute_reply', content, ident)
-      display(result) unless msg[:content]['silent']
+      send_display_message(display_message) if display_message && !msg[:content]['silent']
       send_status('idle')
     end
 
