@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake', '~> 10.0'
   s.add_development_dependency 'geminabox', '~> 0.12'
 
-  s.add_runtime_dependency 'activesupport', '~> 3'
+  s.add_runtime_dependency 'activesupport', '>= 4.0'
   s.add_runtime_dependency 'bond', '~> 0'
   s.add_runtime_dependency 'ffi-rzmq', '~> 2.0'
   s.add_runtime_dependency 'multi_json', '~> 1.8'
